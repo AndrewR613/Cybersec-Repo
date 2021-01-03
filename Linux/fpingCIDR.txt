@@ -1,0 +1,12 @@
+#! /bin/bash
+
+# This script is a workaround for fping to read CIDR ranges from a list with the -e flag. Set the list of ranges as the file variable.
+file=                                
+
+
+cat $file | while read line; do
+echo Summary of results for $line:
+echo -e "\n"
+sudo fping -sg $line
+echo -e "\n"
+done
