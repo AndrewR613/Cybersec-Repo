@@ -1,5 +1,5 @@
 # Cybersec-Repo
-Repository including code written for U of T cybersecurity bootcamp and any other useful tools for cybersecurity.
+Repository including code written for U of T cybersecurity bootcamp, details of Microsoft Azure cloud deployment, and any other useful tools for cybersecurity.
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
@@ -11,7 +11,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
   - _TODO: Enter the playbook file._
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -33,13 +33,13 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-
+| Name     | Function               | Private IP Address | Public IP Address | Operating System |
+|----------|------------------------|--------------------|-------------------|------------------|
+| Jump Box | Gateway                | 10.0.0.4           | 52.188.162.69     | Ubuntu 18.04-LTS |
+| Web-1    | DVWA Web Server        | 10.0.0.5           | 137.135.118.31    | Ubuntu 18.04-LTS |
+| Web-2    | DVWA Web Server        | 10.0.0.6           | 137.135.118.31    | Ubuntu 18.04-LTS |
+| Web-3    | DVWA Web Server        | 10.0.0.7           | 137.135.118.31    | Ubuntu 18.04-LTS |
+| ELK-1    | Logging and Monitoring | 10.1.0.4           | 40.75.87.24       | Ubuntu 18.04-LTS |
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
