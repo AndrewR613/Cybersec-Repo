@@ -24,11 +24,9 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will have a high degree of reliablility as well as redundancy. In addition, having the traffic flow through the load balancer restricts access to the network. Having the web servers behind the load balancer assists in protecting the availability of the web application in the event of a denial of service attack or technical failure. The jump box gives the advantage of limiting the attack surface of the network, acting as a bastion. All interaction with the machines OS must be done through the jump box. 
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the log files (or any other files specified) and system resources.
 
 The configuration details of each machine may be found below.
 
@@ -43,11 +41,10 @@ The configuration details of each machine may be found below.
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- Andrew's Home IP
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+Machines within the network can only be accessed by SSH through the Jump Box at 10.0.0.4.
 
 A summary of the access policies in place can be found in the table below.
 
@@ -62,7 +59,6 @@ A summary of the access policies in place can be found in the table below.
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because in the event that the ELK stack needs to be rebuilt, it is as simple as running the Ansible playbook. This also is advantageous in regards to scalability. Should the cloud environment require a second server to monitor the web servers, it can be easily accomplished by adding another machine to the hosts file and re-running the script. Hours of work may be reduced to mere minutes through the convenience of Ansible.
-- _TODO: What is the main advantage of automating configuration with Ansible?_
 
 The playbook implements the following tasks:
 
@@ -87,7 +83,10 @@ We have installed the following Beats on these machines:
 - Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+
+- Filebeat is used to collect log data from each machine. It then passes the log data to logstash and makes the data uniform so it can easily be parsed. For example, filebeat will monitor /var/log/auth.log and record any use of privilege escalation. Since only DVWA should be running using system users, privilege escalation may be an indicator that the machine has been compromised.
+
+- Metricbeat is used to monitor system resources on each machine. For example, if CPU usage suddenly increases to 100% it may be an indicator that malware has been installed and is abusing system resources, or that there is an issue with the application.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -101,9 +100,4 @@ The following screenshot is an example of what the Kibana dashboard looks like w
 
 ![Kibana Screenshot](https://github.com/AndrewR613/Cybersec-Repo/blob/main/Images/kibana_screenshot.PNG)
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
