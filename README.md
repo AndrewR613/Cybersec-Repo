@@ -51,11 +51,13 @@ Machines within the network can only be accessed by _____.
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name     | Publicly Accessible | Allowed IP Addresses        | Published Ports |
+|----------|---------------------|-----------------------------|-----------------|
+| Jump Box | No                  | Andrew Home IP, 10.0.0.0/24 | TCP 22          |
+| Web-1    | No                  | Andrew Home IP, 10.0.0.0/24 | TCP 80          |
+| Web-2    | No                  | Andrew Home IP, 10.0.0.0/24 | TCP 80          |
+| Web-3    | No                  | Andrew Home IP, 10.0.0.0/24 | TCP 80          |
+| ELK-1    | No                  | Andrew Home IP, 10.0.0.0/24 | TCP 5601        |
 
 ### Elk Configuration
 
@@ -93,7 +95,11 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the install-elk.yml file to /etc/ansible/roles
 - Update the hosts file to include your targets. You must specify the IP address of the machine which will be configured to run the elk stack as one group and any webservers that will be installed with beats as a seperate group.
-- Run the playbook, and navigate to http://<your ELK machine's ip>:5601/app/kibana#/home to check that the installation worked as expected.
+- Run the playbook, and navigate to http://<your ELK machine's ip>:5601/app/kibana#/home in your browser to check that the installation worked as expected.
+
+The following screenshot is an example of what the Kibana dashboard looks like when navigated to through the browser.
+
+![Kibana Screenshot](https://github.com/AndrewR613/Cybersec-Repo/blob/main/Images/kibana_screenshot.PNG)
 
 _TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
